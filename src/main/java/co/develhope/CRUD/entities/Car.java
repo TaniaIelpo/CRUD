@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * @author Tania Ielpo
+ */
+
 @Entity
 @Table
 @Data
