@@ -1,6 +1,7 @@
 package co.develhope.CRUD.services;
 
 
+import co.develhope.CRUD.DTO.CarDTO;
 import co.develhope.CRUD.entities.Car;
 import co.develhope.CRUD.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +38,14 @@ public class CarService {
     }
 
 
-    public Car updateSingleCar(long id, Car car) {
+    public Car updateSingleCar(long id, CarDTO car) {
         if(carRepository.existsById(id)) {
             car.setId(id);
-            return carRepository.saveAndFlush(car);
+
+            Car carToSave= new Car(id,
+                    carRepository.findById(id).get().getModel(),
+                    car.getType());
+            return carRepository.saveAndFlush(carToSave);
         }
         else
             return new Car();

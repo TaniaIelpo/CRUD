@@ -1,11 +1,12 @@
 package co.develhope.CRUD.controllers;
 
 
+import co.develhope.CRUD.DTO.CarDTO;
 import co.develhope.CRUD.entities.Car;
-import co.develhope.CRUD.repositories.CarRepository;
 import co.develhope.CRUD.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,9 +35,10 @@ public class CarController {
     public Car getSingle(@PathVariable long id){
         return carService.getSingle(id);
     }
+
     @PutMapping("/{id}")
     public Car updateSingle(@PathVariable long id,
-                             @RequestBody Car car){
+                             @RequestBody @Validated CarDTO car){
        return carService.updateSingleCar(id,car);
     }
 
