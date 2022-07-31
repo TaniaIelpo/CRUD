@@ -42,9 +42,9 @@ public class CarService {
         if(carRepository.existsById(id)) {
             car.setId(id);
 
-            Car carToSave= new Car(id,
-                    carRepository.findById(id).get().getModel(),
-                    car.getType());
+
+            Car carToSave=carRepository.findById(id).get();
+            carToSave.setType(car.getType());
             return carRepository.saveAndFlush(carToSave);
         }
         else
